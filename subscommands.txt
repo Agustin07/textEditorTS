@@ -1,12 +1,14 @@
-Try using -n with p:
+Let's test some commands for the textEditorTS
+
+First try using option '-n' with 'p' flag:
 node dist/index.js -n "s/g/6/p" test.txt
 
-Try using -e:
+Try -e:
 node dist/index.js -e "s/James/J./" test.txt
 
 
 
-Also if you don't use the format suggested for Substitution command: s/expreg/substitution string/flag you will be alerted! 
+Also if you don't use the suggested format for Substitution command: "s/expreg/substitution string/flag" you will be alerted! 
 Doing something like this you can check: 
 node dist/index.js -e "s/g/6" test.txt   or   node dist/index.js -e "s/6" test.txt
 
@@ -14,17 +16,17 @@ or trying to input an unexisting file:
 node dist/index.js -e "s/g/6/p" tess.txt
 
 even trying with a flag that isn't valid! 
-node dist/index.js -e "s/g/6/y" tess.txt
+node dist/index.js -e "s/g/6/y" test.txt
 
 
 
-Try using -e multiple times, and how about g?
+Try using -e multiple times, and how about 'g' flag?
 node dist/index.js -e "s/James/J./" -e "s/i/1/g" -e "s/-/~/" test.txt
 
-Try using -f that must have an script! 
+Try using -f that must have a script aside! 
 node dist/index.js -f script.sed test.txt
 
-Try to edit some of the substitution command of script.sed, save and try again: 
+Try to edit some of the substitution command of script.sed or add a new subs command to the list, save and try again: 
 node dist/index.js -f script.sed test.txt
 
 
@@ -36,4 +38,4 @@ node dist/index.js -e "s/James/Juan/w fileWrited" test.txt
 Finally you can test getting the output in place with -i, also we can use The Juanes .txt (fileWrited.txt)  try this:
 node dist/index.js -i "s/Juan/I'm the real juan/" fileWrited.txt
 
-now open and check "fileWrited.txt" LOL!
+now open and check "fileWrited.txt" !

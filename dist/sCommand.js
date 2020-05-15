@@ -6,20 +6,18 @@ function readCommand() {
     return {
         scmdlist: commandsList,
         isACommand: function (input, selectedOption) {
-            if (typeof (input) === 'string' || input instanceof String) {
+            if (typeof (input) === 'string' || input instanceof String) { // -- for one string / possible subs command
                 commandsList.push(exports.formater(input, selectedOption));
                 return this;
             }
-            else if (input instanceof Array) {
+            else if (input instanceof Array) { // -- for an array / more than one possible subs command
                 for (var _i = 0, input_1 = input; _i < input_1.length; _i++) {
                     var element = input_1[_i];
                     commandsList.push(exports.formater(element, selectedOption));
                 }
                 return this;
             }
-            else {
-                return this;
-            }
+            return this;
         }
     };
 }

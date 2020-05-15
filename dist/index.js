@@ -32,12 +32,12 @@ try {
     commandsList = SCommands.readCommand().isACommand(args.n, 'n').isACommand(args.e, 'e').isACommand(args.i, 'i');
     var fileName = args._[0];
     var fileAddress = Utils.getFileAddress(fileName);
-    var script = Utils.isScript(args.f, 'f');
+    var scriptFile = Utils.isScript(args.f, 'f');
     if (!Utils.checkFile(fileAddress))
         throw new Error("Oh no! File does not exist");
     {
-        ((script.exist) ? // -f script.sed called?
-            editorFunctions.runScript(script.script, commandsList.scmdlist, fileAddress) : // ->  true
+        ((scriptFile.exist) ? // -f script.sed called?
+            editorFunctions.runScript(scriptFile.script, commandsList.scmdlist, fileAddress) : // ->  true
             editorFunctions.runEditor(commandsList.scmdlist, fileAddress)); // ->  false
     }
 }

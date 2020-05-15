@@ -1,5 +1,5 @@
 // Interface for a substitution command
-export interface sCommand{
+export interface sCommand {
     s : true;
     expreg : RegExp;
     flag : string | undefined;
@@ -10,7 +10,7 @@ export interface sCommand{
 }
 
 // List of substitution commands 
-export interface scmdStack{
+export interface scmdStack {
     scmdlist : sCommand[];
     isACommand( input : string | [] | undefined, selectedOption : string) : scmdStack;
 }
@@ -21,18 +21,16 @@ export function readCommand(): scmdStack{
     return { 
         scmdlist : commandsList,
         isACommand(input, selectedOption) : scmdStack { 
-            if ( typeof(input) === 'string' || input instanceof String ) { 
+            if ( typeof(input) === 'string' || input instanceof String ) {   // -- for one string / possible subs command
                 commandsList.push( formater( input as string , selectedOption ) );
                 return this;
-            } else if ( input instanceof Array ) {
+            } else if ( input instanceof Array ) {                           // -- for an array / more than one possible subs command
                 for ( let element of input ) {
-                commandsList.push( formater( element, selectedOption ) );
+                    commandsList.push( formater( element, selectedOption ) );    
                 }
                 return this;
             }
-            else {
-                return this;
-            }
+            return this;
          }
     }
  }
@@ -49,7 +47,7 @@ export const formater = (input: string, selectedOption: string): sCommand => {
                 case 'g' :  // global substitution!
                     return { 
                         s : sExist,
-                        expreg: new RegExp(cmdPart[1],'g'),
+                        expreg : new RegExp(cmdPart[1],'g'),
                         flag : cmdPart[3],
                         substitution : cmdPart[2],
                         option : selectedOption 
@@ -58,7 +56,7 @@ export const formater = (input: string, selectedOption: string): sCommand => {
                 case 'I' : // ignores case sensitive
                     return { 
                         s : sExist,
-                        expreg: new RegExp(cmdPart[1],'i'),
+                        expreg : new RegExp(cmdPart[1],'i'),
                         flag : cmdPart[3],
                         substitution : cmdPart[2],
                         option : selectedOption 
@@ -67,7 +65,7 @@ export const formater = (input: string, selectedOption: string): sCommand => {
                 case 'p': // print 
                     return { 
                         s : sExist,
-                        expreg: new RegExp(cmdPart[1]),
+                        expreg : new RegExp(cmdPart[1]),
                         flag : cmdPart[3],
                         substitution : cmdPart[2],
                         option : selectedOption 
@@ -75,7 +73,7 @@ export const formater = (input: string, selectedOption: string): sCommand => {
                 case '':
                     return { 
                         s : sExist,
-                        expreg: new RegExp(cmdPart[1]),
+                        expreg : new RegExp(cmdPart[1]),
                         flag : cmdPart[3],
                         substitution : cmdPart[2],
                         option : selectedOption 
