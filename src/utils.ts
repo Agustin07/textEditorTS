@@ -1,9 +1,6 @@
 // ---- npm modules
 import * as fs from "fs";
 import * as path from "path";
-import * as readline from "readline";
-
-// ----  internal modules
 
 export function getFileAddress(fileName: string, dirname: string = process.cwd()): string {
     let fName : string = path.normalize(fileName as string);

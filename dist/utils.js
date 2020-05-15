@@ -23,7 +23,6 @@ exports.isScript = exports.checkFile = exports.getFileAddress = void 0;
 // ---- npm modules
 var fs = __importStar(require("fs"));
 var path = __importStar(require("path"));
-// ----  internal modules
 function getFileAddress(fileName, dirname) {
     if (dirname === void 0) { dirname = process.cwd(); }
     var fName = path.normalize(fileName);

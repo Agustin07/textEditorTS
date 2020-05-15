@@ -21,3 +21,5 @@
 Known issues:
     You shoudn't use to options for one substitution commmand at the same time.
     Something like -n -e 's/o/0/' test.txt woundn't work!
+
+Find some substitution commands you should try on: subscommands.txt

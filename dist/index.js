@@ -24,23 +24,21 @@ var minimist = __importStar(require("minimist"));
 // ----  internal modules
 var Utils = __importStar(require("./utils"));
 var SCommands = __importStar(require("./SCommand"));
-//import * as editorFunctions from "./editorFunctions.js";
+var editorFunctions = __importStar(require("./editorFunctions.js"));
 // ---- start app!
-var args = minimist.default(process.argv.slice(2), { string: ['n', 'e', 'i', '_', 'f'] }); //  get args by its respective options
 try {
-    var args_1 = minimist.default(process.argv.slice(2), { string: ['n', 'e', 'i', '_', 'f'] }); //  get args by its respective options
+    var args = minimist.default(process.argv.slice(2), { string: ['n', 'e', 'i', '_', 'f'] }); //  get args by its respective options
     var commandsList = void 0;
-    commandsList = SCommands.readCommand().isACommand(args_1.n, 'n').isACommand(args_1.e, 'e').isACommand(args_1.i, 'i');
-    var fileName = args_1._[0];
+    commandsList = SCommands.readCommand().isACommand(args.n, 'n').isACommand(args.e, 'e').isACommand(args.i, 'i');
+    var fileName = args._[0];
     var fileAddress = Utils.getFileAddress(fileName);
-    console.log('hola');
-    var script = Utils.isScript(args_1.f, 'f');
+    var script = Utils.isScript(args.f, 'f');
     if (!Utils.checkFile(fileAddress))
         throw new Error("Oh no! File does not exist");
     {
-        ((script.exist) ?
-            /* Utils.runScript( script.script, commandsList.lista,fileAddress) */ 1 : 2 /* editorFunctions.runEditor(commandsList.lista,fileAddress) */);
-        //editorFunctions.runEditor(commandsList.lista,fileAddress);
+        ((script.exist) ? // -f script.sed called?
+            editorFunctions.runScript(script.script, commandsList.scmdlist, fileAddress) : // ->  true
+            editorFunctions.runEditor(commandsList.scmdlist, fileAddress)); // ->  false
     }
 }
 catch (err) {
