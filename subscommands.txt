@@ -1,0 +1,24 @@
+Try using -n with p:
+node dist/index.js -n "s/g/6/p" test.txt
+
+Try using -e:
+node dist/index.js -e "s/James/J./" test.txt
+
+Try using -e multiple times, and how about g?
+node dist/index.js -e "s/James/J./" -e "s/i/1/g" -e "s/-/~/" test.txt
+
+Try using -f that must have an script! 
+node dist/index.js -f script.sed test.txt
+
+Try to edit some of the substitution command of script.sed, save and try again: 
+node dist/index.js -f script.sed test.txt
+
+You can write a file with something like this:
+node dist/index.js -e "s/James/Juan/w fileWrited" test.txt
+
+(then you can find The Juaness' on 'fileWrited.txt' LOL)
+
+Finally you can test getting the output in place with -i, also we can use The Juanes .txt (fileWrited.txt)  try this:
+node dist/index.js -i "s/Juan/I'm the real juan/" fileWrited.txt
+
+now open and check "fileWrited.txt" LOL!

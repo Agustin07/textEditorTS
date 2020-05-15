@@ -1,29 +1,24 @@
-// ---- npm modules
-import * as fs from "fs";
-
-// ---- internal modules
-import * as Utils from "./utils.js";
-
+// Interface for a substitution command
 export interface sCommand{
-    s:true;
-    expreg: RegExp;
-    flag: string | undefined;
-    substitution: string;
-    option: string;
-    fileToWrite?: string;
-    writeContent?: string;
+    s : true;
+    expreg : RegExp;
+    flag : string | undefined;
+    substitution : string;
+    option : string;
+    fileToWrite ?: string;
+    writeContent ?: string;
 }
 
 // List of substitution commands 
 export interface scmdStack{
-    scmdlist: sCommand[];
-    isACommand(input: string | [] | undefined, selectedOption: string) : scmdStack;
+    scmdlist : sCommand[];
+    isACommand( input : string | [] | undefined, selectedOption : string) : scmdStack;
 }
 
 export function readCommand(): scmdStack{
     let commandsList : sCommand[]=[]; 
     return { 
-        scmdlist  :commandsList,
+        scmdlist : commandsList,
         isACommand(input, selectedOption) : scmdStack {
             if ( typeof(input) === 'string' || input instanceof String ) { 
                 commandsList.push( formater( input as string , selectedOption ) );
@@ -45,7 +40,7 @@ export function readCommand(): scmdStack{
 // function formater : Cast a substitution command w the sCommand interface!
 export const formater = (input: string, selectedOption: string): sCommand => {
     //let newCommand : SCommand;
-    let cmdPart = input.split('/');
+    let cmdPart : string[] = input.split('/');
     if (cmdPart[0] !== 's') throw new Error('Oh no! Incorrect substitution command!'); {
         let sExist = true;
         if (cmdPart.length !== 4) throw new Error('Oh no! Incorrect substitution command!'); {
