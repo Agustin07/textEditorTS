@@ -23,6 +23,7 @@ exports.isScript = exports.checkFile = exports.getFileAddress = void 0;
 // ---- npm modules
 var fs = __importStar(require("fs"));
 var path = __importStar(require("path"));
+// format a path!
 function getFileAddress(fileName, dirname) {
     if (dirname === void 0) { dirname = process.cwd(); }
     var fName = path.normalize(fileName);
@@ -30,6 +31,7 @@ function getFileAddress(fileName, dirname) {
     return fileAddress;
 }
 exports.getFileAddress = getFileAddress;
+// check if file is valid
 function checkFile(fileAddress) {
     if (!(fs.existsSync(fileAddress)))
         throw new Error("Oh no! The file does not exist!");
@@ -38,6 +40,7 @@ function checkFile(fileAddress) {
     }
 }
 exports.checkFile = checkFile;
+// validates script
 function isScript(input, selectedOption) {
     if (!(typeof (input) === 'string' || input instanceof String))
         return { exist: false, script: '' };

@@ -68,6 +68,7 @@ var fs = __importStar(require("fs"));
 var readline = __importStar(require("readline"));
 // ----  internal modules
 var SCommands = __importStar(require("./SCommand"));
+// read script, get substitution commands, run editor!
 function runScript(fileScript, listofCommands, fileAddress) {
     var e_1, _a;
     return __awaiter(this, void 0, void 0, function () {
@@ -115,6 +116,7 @@ function runScript(fileScript, listofCommands, fileAddress) {
     });
 }
 exports.runScript = runScript;
+// run editor!
 function runEditor(listofCommands, fileAddress) {
     var e_2, _a;
     return __awaiter(this, void 0, void 0, function () {

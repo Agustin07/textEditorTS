@@ -36,7 +36,7 @@ exports.formater = function (input, selectedOption) {
             throw new Error('Oh no! Incorrect substitution command!');
         {
             switch (cmdPart[3]) {
-                case 'g':
+                case 'g': // global substitution!
                     return {
                         s: sExist,
                         expreg: new RegExp(cmdPart[1], 'g'),
@@ -44,7 +44,7 @@ exports.formater = function (input, selectedOption) {
                         substitution: cmdPart[2],
                         option: selectedOption
                     };
-                case 'I':
+                case 'I': // ignores case sensitive
                     return {
                         s: sExist,
                         expreg: new RegExp(cmdPart[1], 'i'),
@@ -52,7 +52,7 @@ exports.formater = function (input, selectedOption) {
                         substitution: cmdPart[2],
                         option: selectedOption
                     };
-                case 'p':
+                case 'p': // print 
                     return {
                         s: sExist,
                         expreg: new RegExp(cmdPart[1]),
@@ -71,7 +71,7 @@ exports.formater = function (input, selectedOption) {
                 default:
                     if (!(cmdPart[3].match('^w.*$')))
                         throw new Error("Oh no! Flag is not valid");
-                    {
+                    { // write a file!
                         var wFlag = cmdPart[3].split(' ');
                         return {
                             s: sExist,

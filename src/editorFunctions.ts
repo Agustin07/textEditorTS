@@ -5,7 +5,7 @@ import * as readline from "readline";
 // ----  internal modules
 import * as SCommands from "./SCommand";
 
-
+// read script, get substitution commands, run editor!
 export async function runScript(fileScript : string, listofCommands : SCommands.sCommand[], fileAddress : string) {
     let rl = readline.createInterface(fs.createReadStream(fileScript));
     let fList : SCommands.sCommand[] = []
@@ -16,7 +16,7 @@ export async function runScript(fileScript : string, listofCommands : SCommands.
     runEditor(allCommands, fileAddress);
   }
 
-
+// run editor!
 export async function runEditor(listofCommands : SCommands.sCommand[], fileAddress : string ) {
     const rl = readline.createInterface(fs.createReadStream(fileAddress));
     let conditionN: Boolean = !!(listofCommands.filter( value => (value.option==='n')).length);

@@ -15,11 +15,12 @@ export interface scmdStack{
     isACommand( input : string | [] | undefined, selectedOption : string) : scmdStack;
 }
 
+
 export function readCommand(): scmdStack{
     let commandsList : sCommand[]=[]; 
     return { 
         scmdlist : commandsList,
-        isACommand(input, selectedOption) : scmdStack {
+        isACommand(input, selectedOption) : scmdStack { 
             if ( typeof(input) === 'string' || input instanceof String ) { 
                 commandsList.push( formater( input as string , selectedOption ) );
                 return this;
@@ -45,7 +46,7 @@ export const formater = (input: string, selectedOption: string): sCommand => {
         let sExist = true;
         if (cmdPart.length !== 4) throw new Error('Oh no! Incorrect substitution command!'); {
             switch(cmdPart[3]){
-                case 'g' :
+                case 'g' :  // global substitution!
                     return { 
                         s : sExist,
                         expreg: new RegExp(cmdPart[1],'g'),
@@ -54,7 +55,7 @@ export const formater = (input: string, selectedOption: string): sCommand => {
                         option : selectedOption 
                     }
 
-                case 'I' :
+                case 'I' : // ignores case sensitive
                     return { 
                         s : sExist,
                         expreg: new RegExp(cmdPart[1],'i'),
@@ -63,7 +64,7 @@ export const formater = (input: string, selectedOption: string): sCommand => {
                         option : selectedOption 
                     }
 
-                case 'p':
+                case 'p': // print 
                     return { 
                         s : sExist,
                         expreg: new RegExp(cmdPart[1]),
@@ -80,7 +81,7 @@ export const formater = (input: string, selectedOption: string): sCommand => {
                         option : selectedOption 
                     }
                 default :
-                    if ( !(cmdPart[3].match('^w.*$')) ) throw new Error("Oh no! Flag is not valid"); {
+                    if ( !(cmdPart[3].match('^w.*$')) ) throw new Error("Oh no! Flag is not valid"); {   // write a file!
                         let wFlag : string[] = cmdPart[3].split(' ');
                         return { 
                             s : sExist,

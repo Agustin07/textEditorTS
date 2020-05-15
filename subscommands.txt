@@ -4,6 +4,20 @@ node dist/index.js -n "s/g/6/p" test.txt
 Try using -e:
 node dist/index.js -e "s/James/J./" test.txt
 
+
+
+Also if you don't use the format suggested for Substitution command: s/expreg/substitution string/flag you will be alerted! 
+Doing something like this you can check: 
+node dist/index.js -e "s/g/6" test.txt   or   node dist/index.js -e "s/6" test.txt
+
+or trying to input an unexisting file: 
+node dist/index.js -e "s/g/6/p" tess.txt
+
+even trying with a flag that isn't valid! 
+node dist/index.js -e "s/g/6/y" tess.txt
+
+
+
 Try using -e multiple times, and how about g?
 node dist/index.js -e "s/James/J./" -e "s/i/1/g" -e "s/-/~/" test.txt
 
@@ -12,6 +26,7 @@ node dist/index.js -f script.sed test.txt
 
 Try to edit some of the substitution command of script.sed, save and try again: 
 node dist/index.js -f script.sed test.txt
+
 
 You can write a file with something like this:
 node dist/index.js -e "s/James/Juan/w fileWrited" test.txt
